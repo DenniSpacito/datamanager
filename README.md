@@ -1,9 +1,6 @@
 # datamanager
 First python project. Allows you to graph basic data. 
 
-# use 
-
-make sure to "pip install matplotlib.pyplot" before use. Simply run the program on your command line.
 # commands:
 
 guess() Takes no arguments, instead inputted by the user. You will be prompted to enter labels, x, and y values.
