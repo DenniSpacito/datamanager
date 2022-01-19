@@ -2,11 +2,6 @@
 import math
 import matplotlib.pyplot as plot 
 import statistics
-import argparse
-
-# argparse stuff
-# parser = argparse.ArgumentParser()
-# parser.parse_args()
 
 # User chooses what mode they want to enter the program in.
 def start_program():
@@ -27,14 +22,15 @@ def start_program():
       This program was originally made as a final project for
       AP Computer Science, but evolved into what has become
       my first ever python project of any actual  value.
-      """")
-
+      """)
+      kill()
     else:
         print("Please enter a valid number")
+        kill()
 
 # Graphing function
 def graph():
-        # Checks if the user wants to label the x and y axis.
+    # Checks if the user wants to label the x and y axis.
     labels_question = input("Would you like labels on the x and y axis? (y/n)")
     
     if labels_question == "y":
@@ -75,7 +71,7 @@ def graph():
           # Turns the lists into tuples and appends them to x_vals and y_vals (master list of coords)
           x_vals.append(tuple(x_values))
           y_vals.append(tuple(y_values))
-        except ValueError:
+        except:
           print("Make sure you are inputting INTEGER values for your data.")
           kill()
     # Plots the lines and names them
@@ -95,7 +91,6 @@ def graph():
       kill()
     
 # Data summary function
-
 def summarize():
   values = []
   # Creates a list of numerical data based off user input.
@@ -113,14 +108,16 @@ def summarize():
       values.append(value)
   # Prints Mean, Median, and Mode using statistics module functions.
   print(f"""
-    MEAN: {statistics.fmean(values)}
-    MEDIAN: {statistics.median(values)}
-    MODE: {statistics.mode(values)}
+    MEAN: {round(statistics.fmean(values), 2)}
+    MEDIAN: {round(statistics.median(values), 2)}
+    MODE: {round(statistics.mode(values), 2)}
+    STANDARD DEVIATION: {round(statistics.stdev(values), 2)}
     """)
+
   # Either exits program or restarts
   exit_or_continue = ""
   while exit_or_continue != "exit" or exit_or_continue != "continue":
-    exit_or_continue = input("Would you like to continue or leave the program? (exit/continue")
+    exit_or_continue = input("Would you like to continue or leave the program? (exit/continue)")
     if exit_or_continue == "exit":
       exit()
     elif exit_or_continue == "continue":
