@@ -90,7 +90,7 @@ def graph():
       plot.show()
     except ValueError:
       print("Please input valid integers.")
-      restart()
+      graph()
     # Either exits program or restarts
     exit_or_continue = input("Would you like to continue or leave the program? (exit/continue")
     if exit_or_continue == "continue":
@@ -104,7 +104,11 @@ def summarize():
   value = list(input("Input your values, seperated by a comma (no space)").split(","))
   values = []
   for i in range(len(value)):
-    values.append(int(value[i]))
+    try:
+      values.append(int(value[i]))
+    except ValueError:
+      print("""Be sure you are entering valid integers and following the rules (Seperate values with a comma, without any spaces""")
+      summarize()
     
   # Prints the statistics using statistics module functions.
   # Checks if the user wants to round
@@ -112,22 +116,30 @@ def summarize():
   if round_ == "y":
     try: 
       i = int(input("How many decimals do you want to round to?: "))
-    except: 
+    except ValueError:  
       print("Please use a valid integer value.")
       summarize()
-    print(f"""
+    try:
+      print(f"""
       MEAN: {round(statistics.fmean(values), i)}
       MEDIAN: {round(statistics.median(values), i)}
       MODE: {round(statistics.mode(values), i)}
       STANDARD DEVIATION: {round(statistics.stdev(values), i)}
-      """) 
-  else: 
-    print(f"""
-      MEAN: {statistics.fmean(values)}
-      MEDIAN: {statistics.median(values)}
-      MODE: {statistics.mode(values)}
-      STANDARD DEVIATION: {statistics.stdev(values)}
       """)
+    except statistics.StatisticsError:
+      print("Please enter more then one value.") 
+      summarize()
+  else: 
+    try:
+      print(f"""
+        MEAN: {statistics.fmean(values)}
+        MEDIAN: {statistics.median(values)}
+        MODE: {statistics.mode(values)}
+        STANDARD DEVIATION: {statistics.stdev(values)}
+        """)
+    except statistics.StatisticsError:
+      print("Please enter more then one value. ")
+      summarize()
     
 
 
