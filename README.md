@@ -3,7 +3,7 @@ First python project. Allows you to graph basic data.
 
 # commands:
 
-guess() Takes no arguments, instead inputted by the user. You will be prompted to enter labels, x, and y values.
+graph() Takes no arguments, instead inputted by the user. You will be prompted to enter labels, x, and y values.
 
 summarize() Takes no arguments, instead inputted by the user. You will be prompted to enter data values, and you will recieve the mean, median, and mode of the dataset.
 
